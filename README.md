@@ -77,6 +77,16 @@ The fake provider supports predictable sentences such as:
 Ari Wijaya worked on Platform Build 1 on 01/01/2026 doing Development for 4 hours.
 ```
 
+## AI Development Conversation
+
+The visible AI-assisted development conversation is exported as JSON at:
+
+```txt
+docs/ai-development-conversation.json
+```
+
+It includes the chronological user requests, assistant implementation summaries, major files changed, verification status, and known remaining limits.
+
 ## Verification
 
 ```bash
