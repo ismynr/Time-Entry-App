@@ -29,6 +29,18 @@ export function useTimeEntryRows(selectedCompanyId) {
         rows.value.push(source ? { ...source } : blankRow(selectedCompanyId.value || ''));
     }
 
+    function insertRow(row) {
+        const firstRow = rows.value[0];
+        const firstRowIsBlank = rows.value.length === 1 && !firstRow.company_id && !firstRow.employee_id && !firstRow.project_id && !firstRow.task_id && !firstRow.hours;
+
+        if (firstRowIsBlank) {
+            rows.value[0] = { ...blankRow(selectedCompanyId.value || ''), ...row };
+            return;
+        }
+
+        addRow(row);
+    }
+
     function addFromPrevious() {
         const previous = rows.value.at(-1);
         addRow(previous ? nextRowFrom(previous) : null);
@@ -73,6 +85,7 @@ export function useTimeEntryRows(selectedCompanyId) {
         rows,
         payloadRows,
         addRow,
+        insertRow,
         addFromPrevious,
         addNextFromRow,
         removeRow,

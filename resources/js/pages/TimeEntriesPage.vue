@@ -1,5 +1,6 @@
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import AiEntryAssistant from '../components/AiEntryAssistant.vue';
 import CompanyFilter from '../components/CompanyFilter.vue';
 import HistoryTable from '../components/HistoryTable.vue';
 import NewEntriesTable from '../components/NewEntriesTable.vue';
@@ -187,6 +188,13 @@ function onHistorySaved(message) {
         <p v-if="notice" class="banner">{{ notice }}</p>
 
         <Tabs v-model="activeTab" :tabs="tabs" />
+
+        <AiEntryAssistant
+            v-if="activeTab === 'new'"
+            :selected-company-id="selectedCompanyId"
+            @insert-row="rowState.insertRow"
+            @notice="notice = $event"
+        />
 
         <NewEntriesTable
             v-if="activeTab === 'new'"

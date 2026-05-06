@@ -45,6 +45,37 @@ On this machine, Homebrew MySQL 8.0 is installed at `/opt/homebrew/opt/mysql@8.0
 - Server-side row validation for company relationships, employee-project assignment, max 24 hours/day, and one project per employee/date.
 - History tab with company/date/employee/project filtering and server-side pagination.
 - Seed data with 3 companies, 8 employees, multi-company assignment, project assignment examples, and conflict-ready time entries.
+- AI-assisted entry parser with confirmation before inserting a draft row. Defaults to `AI_PROVIDER=fake` for local demos; set `AI_PROVIDER=openai` or `AI_PROVIDER=anthropic` and provide the matching API key to use an external model.
+
+## AI-Assisted Entry
+
+The New Entries tab includes an AI-assisted parser. It never saves directly. The user types a sentence, reviews the parsed draft, then clicks `Insert row`.
+
+Local demo mode:
+
+```env
+AI_PROVIDER=fake
+```
+
+External providers:
+
+```env
+AI_PROVIDER=openai
+OPENAI_API_KEY=your-key
+OPENAI_MODEL=gpt-5.4-mini
+```
+
+```env
+AI_PROVIDER=anthropic
+ANTHROPIC_API_KEY=your-key
+ANTHROPIC_MODEL=claude-haiku-3.5
+```
+
+The fake provider supports predictable sentences such as:
+
+```txt
+Ari Wijaya worked on Platform Build 1 on 01/01/2026 doing Development for 4 hours.
+```
 
 ## Verification
 
